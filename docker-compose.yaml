@@ -1,0 +1,39 @@
+networks:
+  wb-network:
+    driver: bridge
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: wb-api-php
+    restart: unless-stopped
+    working_dir: /var/www/html
+    volumes:
+      - ./:/var/www/html
+    ports:
+      - "9000:9000"
+    depends_on:
+      - db
+    networks:
+      - wb-network
+
+  db:
+    image: mysql:8.0
+    container_name: wb-api-mysql
+    restart: unless-stopped
+    ports:
+      - "3310:3306"  # внешний порт 3310, внутри — стандартный 3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: wb_api
+      MYSQL_USER: laravel
+      MYSQL_PASSWORD: laravel
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - wb-network
+
+volumes:
+  db_data:

@@ -10,6 +10,7 @@ class Stock extends Model
     use HasFactory;
 
     protected $fillable = [
+        'account_id',
         'date',
         'last_change_date',
         'supplier_article',
@@ -30,4 +31,9 @@ class Stock extends Model
         'price',
         'discount',
     ];
+
+    public function account()
+    {
+        return $this->belongsTo(Account::class);
+    }
 }

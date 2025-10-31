@@ -5,28 +5,29 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Income extends Model
+class ApiToken extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'account_id',
-        'income_id',
-        'number',
-        'date',
-        'last_change_date',
-        'supplier_article',
-        'tech_size',
-        'barcode',
-        'quantity',
-        'total_price',
-        'date_close',
-        'warehouse_name',
-        'nm_id',
+        'api_service_id',
+        'token_type_id',
+        'value',
     ];
 
     public function account()
     {
         return $this->belongsTo(Account::class);
+    }
+
+    public function apiService()
+    {
+        return $this->belongsTo(ApiService::class);
+    }
+
+    public function tokenType()
+    {
+        return $this->belongsTo(TokenType::class);
     }
 }

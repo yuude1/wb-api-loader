@@ -9,11 +9,9 @@ class Sale extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'g_number'; // используем уникальный номер из API
-    public $incrementing = false;
-
     protected $fillable = [
-        'g_number',
+        'account_id',
+        'sale_number',
         'date',
         'last_change_date',
         'supplier_article',
@@ -41,4 +39,9 @@ class Sale extends Model
         'brand',
         'is_storno',
     ];
+
+    public function account()
+    {
+        return $this->belongsTo(Account::class);
+    }
 }

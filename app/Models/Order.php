@@ -9,11 +9,9 @@ class Order extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'g_number';
-    public $incrementing = false;
-
     protected $fillable = [
-        'g_number',
+        'account_id',
+        'order_number',
         'date',
         'last_change_date',
         'supplier_article',
@@ -32,4 +30,9 @@ class Order extends Model
         'is_cancel',
         'cancel_dt',
     ];
+
+    public function account()
+    {
+        return $this->belongsTo(Account::class);
+    }
 }

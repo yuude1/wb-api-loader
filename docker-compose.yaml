@@ -14,6 +14,8 @@ services:
       - ./:/var/www/html
     ports:
       - "9000:9000"
+    command: >
+      sh -c "php artisan migrate --force && php artisan schedule:work"
     depends_on:
       - db
     networks:
@@ -34,6 +36,6 @@ services:
       - db_data:/var/lib/mysql
     networks:
       - wb-network
-
+      
 volumes:
   db_data:

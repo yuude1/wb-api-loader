@@ -16,18 +16,21 @@ class ApiToken extends Model
         'value',
     ];
 
+    // Связь с аккаунтом
     public function account()
     {
-        return $this->belongsTo(Account::class);
+        return $this->belongsTo(Account::class, 'account_id');
     }
 
+    // Связь с API сервисом
     public function apiService()
     {
-        return $this->belongsTo(ApiService::class);
+        return $this->belongsTo(ApiService::class, 'api_service_id');
     }
 
+    // Связь с типом токена
     public function tokenType()
     {
-        return $this->belongsTo(TokenType::class);
+        return $this->belongsTo(TokenType::class, 'token_type_id');
     }
 }

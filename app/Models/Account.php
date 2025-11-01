@@ -15,28 +15,15 @@ class Account extends Model
         'email',
     ];
 
+    // Связь с токеном (один токен на аккаунт)
+    public function apiToken()
+    {
+        return $this->hasOne(ApiToken::class, 'account_id'); // внешний ключ account_id
+    }
+
+    // Связь с компанией
     public function company()
     {
         return $this->belongsTo(Company::class);
-    }
-
-    public function orders()
-    {
-        return $this->hasMany(Order::class);
-    }
-
-    public function sales()
-    {
-        return $this->hasMany(Sale::class);
-    }
-
-    public function stocks()
-    {
-        return $this->hasMany(Stock::class);
-    }
-
-    public function incomes()
-    {
-        return $this->hasMany(Income::class);
     }
 }

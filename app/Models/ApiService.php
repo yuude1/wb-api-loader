@@ -12,6 +12,7 @@ class ApiService extends Model
     protected $fillable = [
         'name',
         'description',
+        'host',
     ];
 
     public function tokens()

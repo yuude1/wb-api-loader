@@ -11,9 +11,9 @@ return new class extends Migration
         Schema::table('orders', function (Blueprint $table) {
             // создаём nullable foreignId (unsignedBigInt) и внешний ключ на accounts.id
             $table->foreignId('account_id')
-                  ->after('id')      // необязательно, просто порядок колонок
+                  ->after('id')      // порядок колонок
                   ->nullable()
-                  ->constrained('accounts') // явно указываем таблицу
+                  ->constrained('accounts')
                   ->onDelete('cascade');
         });
     }
